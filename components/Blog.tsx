@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Clock, Calendar, ArrowRight, ExternalLink } from "lucide-react";
 
 const posts = [
@@ -64,11 +63,7 @@ export default function Blog() {
   return (
     <section id="blog" className="relative py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
+        <div
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14"
         >
           <div className="max-w-xl">
@@ -91,19 +86,15 @@ export default function Blog() {
             All posts on LinkedIn
             <ArrowRight size={16} />
           </a>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, i) => (
-            <motion.a
+            <a
               key={i}
               href={post.href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
               className="card overflow-hidden group cursor-pointer flex flex-col hover:-translate-y-1.5"
             >
               <div className="h-1.5 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 opacity-80" />
@@ -136,7 +127,7 @@ export default function Blog() {
                   </div>
                 </div>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
       </div>

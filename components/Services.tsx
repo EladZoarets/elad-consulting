@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Brain, Network, GitBranch, TrendingUp, ArrowRight } from "lucide-react";
 
 const services = [
@@ -38,11 +37,7 @@ export default function Services() {
   return (
     <section id="services" className="relative py-24 md:py-32 px-6 band">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
+        <div
           className="max-w-2xl mb-16"
         >
           <span className="text-sm font-bold tracking-widest text-gold-600 dark:text-gold-400 uppercase">
@@ -55,18 +50,14 @@ export default function Services() {
             Not theoretical consulting. Not another dead pilot. Field-tested
             methodology with measurable outcomes.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
                 className="card p-8 group hover:-translate-y-1.5 flex flex-col"
               >
                 <div
@@ -95,7 +86,7 @@ export default function Services() {
                   Let's talk
                   <ArrowRight size={16} />
                 </a>
-              </motion.div>
+              </div>
             );
           })}
         </div>

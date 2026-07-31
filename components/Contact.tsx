@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Linkedin, Github, Mail, ArrowRight } from "lucide-react";
 
 const socials = [
@@ -31,11 +30,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-24 md:py-32 px-6 band">
       <div className="max-w-4xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
+        <div
         >
           <span className="text-sm font-bold tracking-widest text-gold-600 dark:text-gold-400 uppercase">
             Contact
@@ -52,12 +47,8 @@ export default function Contact() {
             {socials.map((social, i) => {
               const Icon = social.icon;
               return (
-                <motion.a
+                <a
                   key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -73,11 +64,11 @@ export default function Contact() {
                     Open
                     <ArrowRight size={13} />
                   </span>
-                </motion.a>
+                </a>
               );
             })}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

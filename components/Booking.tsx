@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
   User,
@@ -92,11 +91,7 @@ export default function Booking() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[42rem] h-[42rem] rounded-full bg-gold-500/[0.05] blur-[140px] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
+        <div
           className="text-center mb-14"
         >
           <span className="text-sm font-bold tracking-widest text-gold-600 dark:text-gold-400 uppercase">
@@ -110,21 +105,14 @@ export default function Booking() {
             clients alongside my full-time role. Currently 4 hours/week,
             Tuesday, Thursday & Friday mornings.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 36 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, delay: 0.1 }}
+        <div
           className="card p-8 md:p-10"
         >
-          <AnimatePresence mode="wait">
             {state === "sent" ? (
-              <motion.div
+              <div
                 key="sent"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
                 className="h-full min-h-[380px] flex flex-col items-center justify-center text-center gap-4"
               >
                 <span className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
@@ -150,13 +138,10 @@ export default function Booking() {
                 >
                   Send another request
                 </button>
-              </motion.div>
+              </div>
             ) : (
-              <motion.form
+              <form
                 key="form"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
                 className="space-y-6"
                 onSubmit={handleSubmit}
               >
@@ -294,10 +279,9 @@ export default function Booking() {
                     Please select a time slot above to continue
                   </p>
                 )}
-              </motion.form>
+              </form>
             )}
-          </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

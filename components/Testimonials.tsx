@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 
 const testimonials = [
@@ -36,11 +35,7 @@ export default function Testimonials() {
       />
 
       <div className="max-w-6xl mx-auto relative">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
+        <div
           className="max-w-2xl mb-14"
         >
           <span className="text-sm font-bold tracking-widest text-gold-600 dark:text-gold-400 uppercase">
@@ -49,16 +44,12 @@ export default function Testimonials() {
           <h2 className="text-3xl md:text-5xl font-extrabold text-ink-900 dark:text-white mt-3 mb-4 leading-tight">
             What decision-makers say
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <motion.figure
+            <figure
               key={i}
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
               className="card p-8 flex flex-col"
             >
               <Quote size={30} className="text-gold-500 mb-5" />
@@ -74,7 +65,7 @@ export default function Testimonials() {
                   <div className="text-xs text-ink-400 dark:text-gray-500">{t.org}</div>
                 </div>
               </figcaption>
-            </motion.figure>
+            </figure>
           ))}
         </div>
       </div>

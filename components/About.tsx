@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { Briefcase, Bot, Gauge, Layers } from "lucide-react";
 
@@ -29,11 +28,7 @@ export default function About() {
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-14 items-start">
           {/* Photo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          <div
             className="relative lg:sticky lg:top-24"
           >
             <div className="relative aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden border hairline shadow-xl">
@@ -46,13 +41,9 @@ export default function About() {
                 sizes="(max-width: 1024px) 100vw, 400px"
               />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          <div
           >
             <span className="text-sm font-bold tracking-widest text-gold-600 dark:text-gold-400 uppercase">
               About
@@ -112,16 +103,12 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-2 gap-4 md:gap-5 lg:pt-14">
             {stats.map((stat, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
                 className={`card p-6 md:p-8 ${i % 2 === 1 ? "lg:translate-y-8" : ""}`}
               >
                 <div className="text-4xl md:text-5xl font-extrabold gold-text mb-2 text-left">
@@ -130,7 +117,7 @@ export default function About() {
                 <div className="text-sm md:text-base text-ink-500 dark:text-gray-400 leading-snug">
                   {stat.label}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
