@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -16,8 +15,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 24 });
 
   useEffect(() => {
     setIsDark(document.documentElement.classList.contains("dark"));
@@ -91,42 +88,29 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <motion.div
-        className="h-[2px] origin-left bg-gradient-to-r from-gold-400 to-gold-600"
-        style={{ scaleX: progress }}
-      />
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden overflow-hidden bg-paper-50/95 dark:bg-ink-950/95 backdrop-blur-xl border-b hairline"
-          >
-            <div className="px-6 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-base text-ink-700 dark:text-gray-300 hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+      {mobileOpen && (
+        <div className="lg:hidden overflow-hidden bg-paper-50/95 dark:bg-ink-950/95 backdrop-blur-xl border-b hairline">
+          <div className="px-6 py-6 flex flex-col gap-4">
+            {navLinks.map((link) => (
               <a
-                href="#booking"
+                key={link.href}
+                href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="mt-2 inline-flex items-center justify-center px-5 py-3 rounded-full bg-gold-500 text-ink-950 font-bold"
+                className="text-base text-ink-700 dark:text-gray-300 hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
               >
-                Book a Call
+                {link.label}
               </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+            <a
+              href="#booking"
+              onClick={() => setMobileOpen(false)}
+              className="mt-2 inline-flex items-center justify-center px-5 py-3 rounded-full bg-gold-500 text-ink-950 font-bold"
+            >
+              Book a Call
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

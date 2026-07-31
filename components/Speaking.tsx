@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Presentation, Mic, Users, GraduationCap, ArrowRight } from "lucide-react";
 
 const topics = [
@@ -41,13 +40,7 @@ export default function Speaking() {
   return (
     <section id="speaking" className="relative py-24 md:py-32 px-6 band">
       <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="max-w-2xl mb-16"
-        >
+        <div className="max-w-2xl mb-16">
           <span className="text-sm font-bold tracking-widest text-gold-600 dark:text-gold-400 uppercase">
             Speaking
           </span>
@@ -59,21 +52,13 @@ export default function Speaking() {
             ready to move beyond AI experimentation.
             Available for one-off talks or recurring bi-weekly lecture series.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Speaking topics */}
         <div className="grid md:grid-cols-2 gap-6 mb-16">
           {topics.map((topic, i) => {
             const Icon = topic.icon;
             return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: (i % 2) * 0.1 }}
-                className="card p-7 group hover:-translate-y-1.5"
-              >
+              <div key={i} className="card p-7 group hover:-translate-y-1.5">
                 <div className="flex items-start gap-4">
                   <div className="shrink-0 w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center group-hover:bg-gold-500/20 transition-colors">
                     <Icon size={22} className="text-gold-500" />
@@ -90,19 +75,12 @@ export default function Speaking() {
                     </span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
-        {/* Engagement formats */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6 }}
-          className="card p-8 md:p-10"
-        >
+        <div className="card p-8 md:p-10">
           <h3 className="text-xl font-bold text-ink-900 dark:text-white mb-6">
             Engagement formats
           </h3>
@@ -128,7 +106,7 @@ export default function Speaking() {
               <ArrowRight size={16} />
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
