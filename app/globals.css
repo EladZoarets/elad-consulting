@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  direction: ltr;
+  font-family: var(--font-inter), var(--font-heebo), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  background-color: #fafaf8;
+  color: #171a24;
+}
+html.dark body {
+  background-color: #08090d;
+  color: #f3f4f6;
+}
+
+/* Numbers & latin fragments always render LTR-friendly */
+.ltr {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2c3140 #0d0f16;
+}
+html:not(.dark) {
+  scrollbar-color: #d6d3c9 #f4f3ef;
+}
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0f16;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c3140;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f5a623;
+}
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f4f3ef;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #d6d3c9;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #e09512;
+}
+
+/* ── Typography helpers ────────────────────────────── */
+.gold-text {
+  background: linear-gradient(120deg, #fbbf24 0%, #f5a623 55%, #e09512 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Surfaces ──────────────────────────────────────── */
+.card {
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(160deg, rgba(23, 26, 36, 0.85), rgba(13, 15, 22, 0.9));
+  box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.35s ease;
+}
+.card:hover {
+  border-color: rgba(245, 166, 35, 0.35);
+}
+
+html:not(.dark) .card {
+  border-color: rgba(15, 23, 42, 0.09);
+  background: #ffffff;
+  box-shadow: 0 8px 40px -16px rgba(15, 23, 42, 0.14);
+}
+html:not(.dark) .card:hover {
+  border-color: rgba(224, 149, 18, 0.45);
+  box-shadow: 0 16px 48px -16px rgba(224, 149, 18, 0.22);
+}
+
+/* Soft section band (alternating background) */
+.band {
+  background: rgba(255, 255, 255, 0.018);
+}
+html:not(.dark) .band {
+  background: #f4f3ef;
+}
+
+/* Hairline divider */
+.hairline {
+  border-color: rgba(255, 255, 255, 0.07);
+}
+html:not(.dark) .hairline {
+  border-color: rgba(15, 23, 42, 0.1);
+}
+
+/* ── Form fields ───────────────────────────────────── */
+.field {
+  width: 100%;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.8rem 1rem 0.8rem 2.75rem;
+  color: #f3f4f6;
+  font-size: 0.9375rem;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.field::placeholder {
+  color: #6b7280;
+}
+.field:focus {
+  outline: none;
+  border-color: rgba(245, 166, 35, 0.55);
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.12);
+}
+html:not(.dark) .field {
+  border-color: rgba(15, 23, 42, 0.14);
+  background: #ffffff;
+  color: #171a24;
+}
+html:not(.dark) .field::placeholder {
+  color: #9ca3af;
+}
+html:not(.dark) .field:focus {
+  border-color: rgba(224, 149, 18, 0.6);
+  box-shadow: 0 0 0 3px rgba(224, 149, 18, 0.14);
+}
+
+/* ── Decorative grid backdrop ──────────────────────── */
+.bg-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+html:not(.dark) .bg-grid {
+  background-image: linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+}
+
+/* Dashed ring used around the portrait placeholder */
+.dashed-ring {
+  background-image: repeating-conic-gradient(
+    from 0deg,
+    rgba(245, 166, 35, 0.5) 0deg 6deg,
+    transparent 6deg 14deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+}
+
+::selection {
+  background: rgba(245, 166, 35, 0.3);
+  color: inherit;
+}
