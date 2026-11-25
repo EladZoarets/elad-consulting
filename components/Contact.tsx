@@ -1,73 +1,52 @@
-"use client";
+import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { getDict } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 
-import { Linkedin, Github, Mail, ArrowRight } from "lucide-react";
+const icons = [Linkedin, Github, Mail];
 
-const socials = [
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    handle: "in/eladz",
-    href: "https://www.linkedin.com/in/eladz",
-    ariaLabel: "Open Elad Zoarets LinkedIn profile",
-  },
-  {
-    icon: Github,
-    label: "GitHub",
-    handle: "@eladzoarets",
-    href: "https://github.com/eladzoarets",
-    ariaLabel: "Open Elad Zoarets GitHub profile",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    handle: "eladzoarets@gmail.com",
-    href: "mailto:eladzoarets@gmail.com",
-    ariaLabel: "Send email to Elad Zoarets",
-  },
-];
+export default function Contact({ locale }: { locale: Locale }) {
+  const copy = getDict(locale).contact;
 
-export default function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-32 px-6 band">
+    <section id="contact" className="relative py-24 md:py-28 px-6 band scroll-mt-24">
       <div className="max-w-4xl mx-auto text-center">
-        <div
+        <span
+          className={`text-sm font-bold text-gold-600 dark:text-gold-400 ${
+            locale === "en" ? "uppercase tracking-widest" : "tracking-wide"
+          }`}
         >
-          <span className="text-sm font-bold tracking-widest text-gold-600 dark:text-gold-400 uppercase">
-            Contact
-          </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-ink-900 dark:text-white mt-3 mb-5 leading-tight">
-            Let's connect
-          </h2>
-          <p className="text-lg text-ink-500 dark:text-gray-400 mb-12 max-w-xl mx-auto">
-            Open to conversations about AI strategy, Multi-Agent orchestration,
-            SDLC transformation — and anything related to engineering leverage.
-          </p>
+          {copy.eyebrow}
+        </span>
+        <h2 className="text-3xl md:text-5xl font-extrabold text-ink-900 dark:text-white mt-3 mb-10 leading-tight">
+          {copy.title}
+        </h2>
 
-          <div className="grid sm:grid-cols-3 gap-4">
-            {socials.map((social, i) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.ariaLabel}
-                  className="card p-6 flex flex-col items-center gap-3 group hover:-translate-y-1"
-                >
-                  <span className="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/25 flex items-center justify-center group-hover:bg-gold-500/20 transition-colors">
-                    <Icon size={22} className="text-gold-500" />
-                  </span>
-                  <span className="font-bold text-ink-900 dark:text-white">{social.label}</span>
-                  <span className="text-sm text-ink-400 dark:text-gray-500">{social.handle}</span>
-                  <span className="inline-flex items-center gap-1 text-xs font-bold text-gold-600 dark:text-gold-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Open
-                    <ArrowRight size={13} />
-                  </span>
-                </a>
-              );
-            })}
-          </div>
+        <div className="grid sm:grid-cols-3 gap-4 text-start">
+          {copy.links.map((link, index) => {
+            const Icon = icons[index] ?? Mail;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.aria}
+                className="card p-6 flex flex-col items-center text-center gap-3 group hover:-translate-y-1"
+              >
+                <span className="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/25 flex items-center justify-center group-hover:bg-gold-500/20 transition-colors">
+                  <Icon size={22} className="text-gold-500" />
+                </span>
+                <span className="font-bold text-ink-900 dark:text-white">{link.label}</span>
+                <span dir="ltr" className="text-sm text-ink-400 dark:text-gray-500">
+                  {link.handle}
+                </span>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-gold-600 dark:text-gold-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {copy.open}
+                  <ArrowRight size={13} className="rtl:rotate-180" />
+                </span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

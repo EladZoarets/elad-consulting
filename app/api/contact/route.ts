@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { name, email, phone, org, message, slot, slotDate, slotTime, slotDay } = body;
+    const { name, email, phone, org, message, slot, slotDate, slotTime, slotDay, locale } = body;
 
     if (!name || !email || !phone || !org) {
       return NextResponse.json(
@@ -75,6 +75,7 @@ export async function POST(req: NextRequest) {
     if (slotDate) lines.push(`Date: ${slotDate}`);
     if (slotDay) lines.push(`Day: ${slotDay}`);
     if (slotTime) lines.push(`Hour: ${slotTime}`);
+    if (locale === "he" || locale === "en") lines.push(`Language: ${locale}`);
     lines.push(
       ``,
       `═══════════════════════════════════════`,
@@ -110,7 +111,7 @@ export async function POST(req: NextRequest) {
       if (!existsSync(submissionsDir)) mkdirSync(submissionsDir);
       writeFileSync(
         join(submissionsDir, `submission-${Date.now()}.json`),
-        JSON.stringify({ name, email, phone, org, message, slot, slotDate, slotTime, slotDay, date: new Date().toISOString() }, null, 2)
+        JSON.stringify({ name, email, phone, org, message, slot, slotDate, slotTime, slotDay, locale, date: new Date().toISOString() }, null, 2)
       );
     }
 
